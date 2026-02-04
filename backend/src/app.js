@@ -47,6 +47,9 @@ await noteModel.findByIdAndDelete(id)//this is a methord in which db opration li
   message:"note dleleted" 
  })
 
+})
+
+
 
 
 
@@ -54,14 +57,16 @@ await noteModel.findByIdAndDelete(id)//this is a methord in which db opration li
  app.patch("/api/notes/:id", async (req,res)=>{
 //we take id in url 
   const id = req.params.id;//store id in variable 
+  const updatednote = req.body
   const {title,discription} = req.body; // our updated data will come in body section so we destructire it and then we take all data which we want title discription 
   
-  await noteModel.findByIdAndUpdate(id,{title,discription});
-  
+  await noteModel.findByIdAndUpdate(id,{title,discription}); //this pass data to db and we pass pass id then we pass things which we want to update in object 
+
+   res.status(200).json({
+    message:"notes fetched ",
+    updatednote
+  })
  })
-
-
-})
 
 
 
