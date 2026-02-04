@@ -1,0 +1,70 @@
+
+const express = require("express")
+
+const app = express()
+app.use(express.json()) // ye middle ware h jo req lete me help karta h 
+const noteModel = require("./models/note.model")//isse ham db me jo chezz notes add karegi usko use karne leke ayenge 
+
+
+// api of notes
+
+//create new notes save data in mongo db
+app.post("/api/notes",async (req,res)=>{
+  const {title,discription} = req.body; //jo  req.body me se data aa raha vo destructure hoga or title or discription alagh alagh hogi 
+  
+  // isme db opration kar rahe h jo new note create ka opration h isme new note banega .create se 
+  const note =  await noteModel.create({
+    title,discription // jo title or discription alagh keya tha vo pass kar rahe h 
+  })
+
+  res.status(201).json({
+    message:"note created ",
+    note
+  })// isme apan response sand kar rahe h ke data save ho gya h 
+
+})//to post notes 
+
+
+
+//fetch all data from the db give to frontend 
+app.get("/api/notes", async (req,res)=>{
+  const notes =  await  noteModel.find();
+  res.status(200).json({
+    message:"notes fetched ",
+    notes
+  })
+
+})
+
+
+// api of the delete notes from db 
+app.delete("/api/notes/:id", async (req,res)=>{
+  //we take id in url and then we store id in variable 
+  const id = req.params.id;//idd variable 
+await noteModel.findByIdAndDelete(id)//this is a methord in which db opration like findby id and delete will run 
+
+ res.status(200).json({
+  message:"note dleleted" 
+ })
+
+
+
+
+ // api of update notes 
+ app.patch("/api/notes/:id", async (req,res)=>{
+//we take id in url 
+  const id = req.params.id;//store id in variable 
+  const {title,discription} = req.body; // our updated data will come in body section so we destructire it and then we take all data which we want title discription 
+  
+  await noteModel.findByIdAndUpdate(id,{title,discription});
+  
+ })
+
+
+})
+
+
+
+
+
+module.exports = app
