@@ -13,3 +13,9 @@ mongodb+srv://ARUN:nG1SB2cR3HgdomxS@cluster0.o7mp0o4.mongodb.net/
 
 
 3. npm i dotenv = this is mainlly use to acces .env file to real this package acces .env file data 
+
+
+
+
+1.35 min 
+
