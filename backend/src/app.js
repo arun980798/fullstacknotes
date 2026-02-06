@@ -1,7 +1,10 @@
 
 const express = require("express")
 
-const app = express()
+const cors = require("cors");
+
+const app = express();
+app.use(cors())
 app.use(express.json()) // ye middle ware h jo req lete me help karta h 
 const noteModel = require("./models/note.model")//isse ham db me jo chezz notes add karegi usko use karne leke ayenge 
 
