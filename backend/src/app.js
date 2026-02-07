@@ -5,7 +5,7 @@ const cors = require("cors");
 const path = require("path")
 const app = express();
 app.use(cors())
-app.use(express.static("./public"))//ye middleware  html ko css or js deta h 
+app.use(express.static("./public"))//ye middleware  html ko css or js deta h or  ye iss fole ke andar ka code or file ko publiclaay provide karte h apan baki sare file ko acces nai kar sakte h 
 app.use(express.json()) // ye middle ware h jo req lete me help karta h 
 
 
