@@ -11,7 +11,7 @@ function App() {
   const [show, setShow] = useState(true);
 
   function notesdata() {
-    let responce = axios.get("http://localhost:3000/api/notes").then((res) => {
+    let responce = axios.get("https://fullstacknotes-1-n80b.onrender.com/api/notes").then((res) => {
       setnotes(res.data.notes);
     });
   }
@@ -24,7 +24,7 @@ function App() {
   }
 
   const deleteData = async (id) => {
-    const response = await fetch(`http://localhost:3000/api/notes/${id}`, {
+    const response = await fetch(`https://fullstacknotes-1-n80b.onrender.com/api/notes/${id}`, {
       method: "DELETE",
     });
     notesdata();
@@ -43,7 +43,7 @@ function App() {
 
     if (pach) {
       axios
-        .patch(`http://localhost:3000/api/notes/${pach}`, {
+        .patch(`https://fullstacknotes-1-n80b.onrender.com/api/notes/${pach}`, {
           title: titlevalue,
           discription: discriptionvalueo,
         })
@@ -55,7 +55,7 @@ function App() {
         });
     } else {
       axios
-        .post("http://localhost:3000/api/notes", {
+        .post("https://fullstacknotes-1-n80b.onrender.com/api/notes", {
           title: title,
           discription: discription,
         }) //isme phele to api ko call karo to post ya note create karne then api ke bad koma laga ke jo data dena  h vo de do
